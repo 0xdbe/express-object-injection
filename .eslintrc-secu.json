@@ -1,0 +1,22 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+
+  "plugins": [
+    "security",
+    "no-unsanitized"
+  ],
+
+  "extends": [
+    "plugin:security/recommended",
+    "plugin:no-unsanitized/DOM"
+  ]
+
+} 
